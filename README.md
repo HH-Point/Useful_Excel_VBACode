@@ -52,3 +52,38 @@ Sub delete_rows()
             
 End Sub
 ```
+
+```
+Function SheetCheck(sheet_name As String) As Boolean
+
+            Dim ws As Worksheet
+
+                SheetCheck = False
+ 
+            For Each ws In ThisWorkbook.Worksheets
+ 
+                If ws.Name = sheet_name Then
+    
+                    SheetCheck = True
+        
+                End If
+ 
+            Next
+ 
+End Function
+
+Sub update_sheets()
+'This will pull sheet names from the updated sharepoint query list and create a sheet for anything not existing'
+    Dim lo As ListObject
+    Dim sheet_name As String
+    
+        Set lo = Sheet1.ListObjects(1)
+        
+        If SheetCheck(sheet_name) = False And sheet_name <> "" Then
+        
+        Sheets.Add.Name = lo.Name
+        
+        End If
+
+End Sub
+```
